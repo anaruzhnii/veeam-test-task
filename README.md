@@ -1,28 +1,28 @@
-# Тестовое задание Veeam
+# Veeam Test Task
 
-## Задание
-Требуется написать консольную программу на C# для генерации сигнатуры указанного файла. Сигнатура генерируется следующим образом: исходный файл делится на блоки заданной длины (кроме последнего блока), для каждого блока вычисляется значение hash-функции SHA256, и вместе с его номером выводится в консоль.
+## Task
+You need to write a console program in C# to generate the signature of the specified file. The signature is generated as follows: the original file is divided into blocks of a given length (except for the last block), for each block the hash-function SHA256 is calculated, and together with its number is output to the console.
 
-Программа должна уметь обрабатывать файлы, размер которых превышает объем оперативной памяти, и при этом максимально эффективно использовать вычислительные мощности многопроцессорной системы. При работе с потоками допускается использовать только стандартные классы и библиотеки из .Net (исключая ThreadPool, BackgroundWorker, TPL).
+The program should be able to process files larger than the amount of RAM, and use the computational power of the multiprocessor system as efficiently as possible. Only standard classes and libraries from .NET (excluding ThreadPool, BackgroundWorker, TPL) may be used when working with threads.
 
-Ожидается реализация с использованием Thread-ов. Путь до входного файла и размер блока задаются в командной строке. В случае возникновения ошибки во время выполнения программы ее текст и StackTrace необходимо вывести в консоль.
+Implementations using Threads are expected. The path to the input file and the block size are specified on the command line. If an error occurs during program execution, its text and StackTrace must be output to the console.
 
-## Запуск
+## Launch
 
-### Из Visual Studio
-Если программа увидит подключенный дебаггер или не найдет аргументов запуска, она попросит ввести путь до файла и размер блока
+### Visual Studio
+If the program sees a debugger attached or finds no launch arguments, it will ask for the path to the file and the size of the block
 
-### Из командной строки
-Аргументы:
-  Что | Зачем 
+### Command Line
+Args:
+  What | Why 
 --- | --- 
-**--input-path** *path*  | Путь до входного файла
-**--block-size** *size* | Размер блока в байтах
-**--output-path** *path*  | *Необязателен.* Путь до файла с результатом расчета. Если не указан, вывод будет производиться в консоль
-**--single-thread** | *Необязателен.* Если указан, программа будет выполняться в однопоточном режиме
-**--hash-algorithm-name** *name* | *Необязателен.* Название алгоритма хэширования, по умолчанию - SHA256
+**--input-path** *path* | Path to input file
+**--block-size** *size* | Block size in bytes
+**--output-path** *path* | *Not required* Path to output file. If not specified, the output is printed to the console
+**--single-thread** | *Not required* If specified, the program will be executed in single-thread mode
+**--hash-algorithm-name** *name* | *Not required* Name of the hashing algorithm, the default is SHA256
 
-## Бенчмарк
+## Benchmark
 |           Method | InputFilePath | BlockSize |        Mean |     Error |    StdDev | Gen 0 | Gen 1 | Gen 2 | Allocated |
 |----------------- |-------------- |---------- |------------:|----------:|----------:|------:|------:|------:|----------:|
 | SingleThreadImpl |   C:\32mb.bin |   4194304 |   120.83 ms |  0.911 ms |  0.852 ms |     - |     - |     - |      4 MB |
